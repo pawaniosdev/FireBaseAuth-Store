@@ -8,8 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var vm: AuthViewModel 
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Group{
+            if vm.currentUser == nil {
+                LoginView()
+            } else {
+                ProfileView()
+            }
+        }
+        .environmentObject(vm)
+        
     }
 }
 
